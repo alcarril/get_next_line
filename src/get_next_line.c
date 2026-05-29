@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alejandro <alejandro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:08:35 by alex              #+#    #+#             */
-/*   Updated: 2024/12/08 00:02:23 by alex             ###   ########.fr       */
+/*   Updated: 2026/05/29 07:24:37 by alejandro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**
+ * @brief Returns the next line read from fd.
+ * @param fd File descriptor to read from.
+ * @return Line including '\n', or NULL on EOF/error.
+ */
 char	*get_next_line(int fd)
 {
 	static void	***tree;
@@ -39,6 +44,13 @@ char	*get_next_line(int fd)
 	return (free(buffer), (char *)tree[fd][3]);
 }
 
+/**
+ * @brief Fills the table until a full line is available.
+ * @param tree Main cache.
+ * @param buffer Read buffer.
+ * @param fd File descriptor.
+ * @return Updated tree, or NULL on allocation failure.
+ */
 void	***read_imput_controler(void ***tree, char *buffer, int fd)
 {
 	ssize_t	readed;
@@ -62,6 +74,13 @@ void	***read_imput_controler(void ***tree, char *buffer, int fd)
 	return (tree);
 }
 
+/**
+ * @brief Splits buffer into line chunks and appends to table.
+ * @param ta Table.
+ * @param s Buffer.
+ * @param readed Bytes read.
+ * @return Updated table, or NULL on allocation failure.
+ */
 void	**ft_split_lines(void **ta, char *s, ssize_t readed)
 {
 	ssize_t	i;
@@ -91,6 +110,14 @@ void	**ft_split_lines(void **ta, char *s, ssize_t readed)
 	return (ta);
 }
 
+/**
+ * @brief Joins existing line with a bounded buffer slice.
+ * @param line Current line.
+ * @param buffer Source buffer.
+ * @param len Current line length.
+ * @param cut Bytes to append.
+ * @return New line string, or NULL on allocation failure.
+ */
 char	*l(char *line, char *buffer, ssize_t len, ssize_t cut)
 {
 	char	*ptr;
@@ -117,6 +144,12 @@ char	*l(char *line, char *buffer, ssize_t len, ssize_t cut)
 	return (ptr);
 }
 
+/**
+ * @brief Shifts stored lines so the next pending line is first.
+ * @param tree Main cache.
+ * @param fd File descriptor index.
+ * @return Updated tree.
+ */
 void	***dispatch_table_lines(void ***tree, int fd)
 {
 	ssize_t	i;

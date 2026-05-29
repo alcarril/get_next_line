@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alejandro <alejandro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 13:22:43 by alex              #+#    #+#             */
-/*   Updated: 2024/12/10 01:13:23 by alex             ###   ########.fr       */
+/*   Updated: 2026/05/29 07:24:37 by alejandro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
+/**
+ * @brief Allocates a new table branch for one fd.
+ * @param table FD table.
+ * @param fd File descriptor index.
+ * @return New table pointer, or NULL on allocation failure.
+ */
 void	**create_new_branch(void **table, int fd)
 {
 	ssize_t	i;
@@ -41,6 +47,13 @@ void	**create_new_branch(void **table, int fd)
 	return (table);
 }
 
+/**
+ * @brief Grows the table to fit the requested line count.
+ * @param table FD table.
+ * @param new_lines Needed line count.
+ * @param lines Allocated line count.
+ * @return Updated table, or NULL on allocation failure.
+ */
 void	**ft_redim_fill_table(void **table, ssize_t new_lines, ssize_t lines)
 {
 	void	**aux_fill_table;
@@ -67,6 +80,14 @@ void	**ft_redim_fill_table(void **table, ssize_t new_lines, ssize_t lines)
 	return (table);
 }
 
+/**
+ * @brief Reallocates the length row for all stored lines.
+ * @param table FD table.
+ * @param new_columns Needed column count.
+ * @param columns Allocated column count.
+ * @param target Row index to replace.
+ * @return New row pointer, or NULL on allocation failure.
+ */
 void	*ft_realloc_fill_ssline(void **table, ssize_t new_columns,
 		ssize_t columns, ssize_t target)
 {
@@ -88,6 +109,12 @@ void	*ft_realloc_fill_ssline(void **table, ssize_t new_columns,
 	return (table[target]);
 }
 
+/**
+ * @brief Frees the table and temporary buffer.
+ * @param table FD table.
+ * @param buffer Read buffer.
+ * @return NULL always.
+ */
 void	**free_all(void **table, char *buffer)
 {
 	int	i;
