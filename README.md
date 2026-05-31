@@ -59,7 +59,9 @@ sudo apt-get install valgrind
 
 ## 👷 Build
 ```bash
-make
+git clone git@github.com:alcarril/get_next_line.git # Clone the repository
+cd get_next_line # Go to the project directory
+make # Build the project and run the default test
 ```
 
 ## ▶️ Run
