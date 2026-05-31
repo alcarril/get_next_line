@@ -19,6 +19,8 @@ get_next_line
 	</a>
 </div>
 
+<br>
+
 ![3D data model](img/datamodel3D.jpeg)
 
 ## 📖 Overview
@@ -43,6 +45,8 @@ ends and nothing remains buffered, it returns **NULL**.
 - Why understanding data structures matters.
 - Memory linearity.
 - `void` pointers and casting.
+
+<br>
 
 ## 🧰 Requirements
 ```bash
@@ -96,6 +100,7 @@ The repository includes a Makefile to run tests. When you run `make`, it reports
 ```bash
 valgrind --leak-check=yes --track-fds=yes ./gnl
 ```
+<br>
 
 ## 🧭 My project approach
 Because the read size is chosen at compile time with **BUFFER_SIZE**, the function must avoid infinite reads and keep the **static buffer as empty as possible** between calls. Before each `read`, it first checks the stored buffer for a newline; after `read`, it checks the newly read chunk again and only keeps what is needed for the next call. Each returned line is copied into a dedicated string that the caller must free.
@@ -105,6 +110,9 @@ The naive approach scans every line multiple times to find `\n` and to rebuild t
 The line-count control also helps **reduce reallocations**: if the table still has free slots from previously returned lines, it reuses them instead of growing the table every time.
 
 > **Note:** 📝 Project explanation: [GNL 4D o Estructura de void](https://broken-snowdrop-f03.notion.site/GNL-4D-o-Estructura-de-void-156b80eb3d88805e9a61dadbdb7dddbb).
+
+<br>
+
 
 ## ⚠️ Project conclusion: memory linearity is fast but structs are easier to manage
 When I started this project I did not know how to use C structs or linked
@@ -122,6 +130,7 @@ that scenario.
 
 > **Note:** 📝 Reddit discussion: [Why triple pointers are not convenient](https://www.reddit.com/r/C_Programming/comments/j14twn/is_it_bad_to_have_3_levels_of_pointers_if_not_how/).
 
+<br>
 
 ## 📚 Resources
 
@@ -130,6 +139,7 @@ that scenario.
 - Open, read, close, and file descriptor handling: [WhileTrueThenDream video](https://www.youtube.com/watch?v=MtqFZRXaeM0&ab_channel=WhileTrueThenDream)
 - General project documentation: [Notion documentation](https://broken-snowdrop-f03.notion.site/Documentaci-n-122b80eb3d888057a687d4524da8d08f?pvs=74)
 
+<br>
 
 ## 🧑‍💻 Author
-- Alejandro Carrillo (alcarril) - https://github.com/alcarril
+- **Alejandro Carrillo (alcarril)** - https://github.com/alcarril
