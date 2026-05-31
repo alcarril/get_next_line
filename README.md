@@ -139,7 +139,6 @@ that scenario.
 - Open, read, close, and file descriptor handling: [WhileTrueThenDream video](https://www.youtube.com/watch?v=MtqFZRXaeM0&ab_channel=WhileTrueThenDream)
 - General project documentation: [Notion documentation](https://broken-snowdrop-f03.notion.site/Documentaci-n-122b80eb3d888057a687d4524da8d08f?pvs=74)
 
-<br>
 
 ## 🧑‍💻 Author
 - **Alejandro Carrillo (alcarril)** - https://github.com/alcarril
